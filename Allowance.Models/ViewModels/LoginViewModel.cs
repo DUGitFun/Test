@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Allowance.Business
+namespace Allowance.Models.ViewModels
 {
-    public class Class1
+    public class LoginViewModel
     {
+        public string Name { get; set; }
     }
 }

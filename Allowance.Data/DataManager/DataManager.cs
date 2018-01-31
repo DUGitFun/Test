@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Allowance.Models;
 
 namespace Allowance.Data.DataManager
 {
@@ -10,10 +11,10 @@ namespace Allowance.Data.DataManager
     {
         private DbEntities db = new DbEntities();
 
-        public IEnumerable<Kid> Test()
+        public IEnumerable<Models.Models.Kids> LoginList()
         {
-            var test = db.Kids.ToList();
-            return test;
+            var kidsD = db.Kids.ToList();
+            return kidsD;
         }
     }
 }

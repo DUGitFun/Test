@@ -10,9 +10,7 @@ namespace Allowance.Weekly
     {
         static void Main(string[] args)
         {
-            var test = new Data.DataManager.DataManager();
 
-            var result = test.Test();
         }
     }
 }
