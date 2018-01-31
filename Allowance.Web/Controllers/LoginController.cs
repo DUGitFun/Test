@@ -18,7 +18,8 @@ namespace Allowance.Web.Controllers
 
         public ActionResult LoginHome()
         {
-            return View("Login");
+            var kidsLogin = _LoginManager.KidsListB();
+            return View("Login", kidsLogin);
         }
     }
 }
