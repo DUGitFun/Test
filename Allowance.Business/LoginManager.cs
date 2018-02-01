@@ -16,7 +16,7 @@ namespace Allowance.Business
 
         private Data.DataManager.DataManager _dataAccess;
 
-        public IEnumerable<Models.Models.Kids> KidsListB()
+        public IEnumerable<Models.ViewModels.LoginViewModel> KidsListB()
         {
             var kidsB = _dataAccess.LoginList();
             return kidsB;

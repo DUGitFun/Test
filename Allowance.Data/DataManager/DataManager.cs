@@ -11,16 +11,11 @@ namespace Allowance.Data.DataManager
     {
         private DbEntities db = new DbEntities();
 
-        public IEnumerable<Models.Models.Kids> LoginList()
+        public IEnumerable<Models.ViewModels.LoginViewModel> LoginList()
         {
             var kidsD = db.Kids.ToList();
-            IEnumerable<Models.Models.Kids> kidList = new List<Models.Models.Kids>();
-            foreach (var item in kidsD)
-            {
-                
-            }
-            var kidsReturn = kidsD.Cast<Models.Models.Kids>().ToList(); //todo fix invalid cast
-            return kidsReturn;
+            //var kidsReturn = kidsD.Cast<Models.Models.Kids>().ToList(); //todo fix invalid cast
+            return kidsD;
         }
     }
 }
