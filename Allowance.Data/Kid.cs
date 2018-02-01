@@ -17,5 +17,6 @@ namespace Allowance.Data
         public int id { get; set; }
         public string Name { get; set; }
         public Nullable<int> Chores { get; set; }
+        public string Gender { get; set; }
     }
 }
