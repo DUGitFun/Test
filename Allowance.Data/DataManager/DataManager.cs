@@ -14,8 +14,8 @@ namespace Allowance.Data.DataManager
         public IEnumerable<Models.ViewModels.LoginViewModel> LoginList()
         {
             var kidsD = db.Kids.ToList();
-            //var kidsReturn = kidsD.Cast<Models.Models.Kids>().ToList(); //todo fix invalid cast
-            return kidsD;
+            var kidsReturn = kidsD.Cast<Models.ViewModels.LoginViewModel>().ToList(); //todo fix invalid cast
+            return kidsReturn;
         }
     }
 }

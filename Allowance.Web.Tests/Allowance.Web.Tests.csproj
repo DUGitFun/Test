@@ -82,6 +82,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Login\LoginTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
   </ItemGroup>
@@ -92,6 +93,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Allowance.Business\Allowance.Business.csproj">
+      <Project>{7518d866-60de-45bc-9d22-3d5daa812922}</Project>
+      <Name>Allowance.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Allowance.Data\Allowance.Data.csproj">
+      <Project>{95be1cf2-6994-4058-908b-0ea4b811bf4b}</Project>
+      <Name>Allowance.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Allowance.Models\Allowance.Models.csproj">
+      <Project>{7c4a40dd-0d15-49bc-9da6-ed91489c94dc}</Project>
+      <Name>Allowance.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Allowance.Web\Allowance.Web.csproj">
       <Project>{370CBBB7-FB95-46E1-8DE0-8BB9D74ECFC6}</Project>
       <Name>Allowance.Web</Name>
