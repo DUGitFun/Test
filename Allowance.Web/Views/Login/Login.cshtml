@@ -1,47 +1,33 @@
 ﻿@model IEnumerable<Allowance.Models.ViewModels.LoginViewModel>
 
-<div class="col-md-6">
+<div class="col-md-12">
     <h2>Choose your account</h2>
     
     <div>
-        <table>
-            <tr>
-                <td></td>
-                <td>Name</td>
-            </tr>
-
             @foreach(var item in Model)
             {
-                <tr>
-                    <td>
+                    <div class="col-md-4" style="display:inline-block;">
                         @{ 
                             if(item.Gender == "m")
                             {
-                                <img src="~/Images/boy.png" />
+                                <img class="main_selector" src="~/Images/boy.png" />
                             }
                             else
                             {
-                                <img src="~/Images/girl.png" />
+                                <img class="main_selector" style="max-width: 10em;" src="~/Images/girl.png" />
                             }
                         }
-                    </td>
-
-                    <td>
+                        <div style="text-align: center;">@Html.DisplayFor(model => item.Name)</div>
+                    </div>
+                    @*<td>
                         @Html.DisplayFor(model => item.Name)
-                    </td>
-                </tr>
+                    </td>*@
             }
-        </table>
     </div>
-     <div class="col-md-3">
-     
-     </div>
-     
-     <div class="col-md-3">
-     
-     </div>
 </div>
 
 <div class="col-md-6" id="login_partial">
 
 </div>
+
+<link rel="stylesheet" type="text/css" href="~/Content/Index.css" />

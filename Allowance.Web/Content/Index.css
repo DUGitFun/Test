@@ -4,4 +4,47 @@
 .main_selector {
     height: 100%;
     width: 100%;
+    margin: auto;
+}
+
+#home_login {
+    display: inline-block;
+}
+
+#main_spaceholder {
+    height: 100%;
+    background-color: black;
+}
+
+#main_boy, #main_girl {
+    margin: auto;
+    width: 100%;
+}
+
+.main_selector {
+    display: block;
+    width: 100%;
+    margin: auto;
+    max-height: 20em;
+    max-width: 20em;
+}
+
+#home_login_div, #main_spaceholder {
+    float: left;
+}
+
+#main_boy, #main_girl {
+    width: 100%;
+    margin: auto;
+}
+
+#main_boy {
+    float: left;
+    margin-left: 15%;
+}
+
+#main_girl{
+    float: right;
+    margin-right: 15%;
+    max-width: 10em;
 }
