@@ -21,5 +21,16 @@ namespace Allowance.Web.Controllers
             var kidsLogin = _LoginManager.KidsListB();
             return View("Login", kidsLogin);
         }
+
+        public ActionResult Login (string name, string password)
+        {
+            var userInfo = _LoginManager.UserLogin(name, password);
+            return View("Home");
+        }
+
+        public ActionResult LoginPartial()
+        {
+            return PartialView("_LoginPassword");
+        }
     }
 }

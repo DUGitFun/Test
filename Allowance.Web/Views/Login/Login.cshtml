@@ -2,27 +2,27 @@
 
 <div class="col-md-12">
     <h2>Choose your account</h2>
-    
+
     <div>
-            @foreach(var item in Model)
-            {
-                    <div class="col-md-4" style="display:inline-block;">
-                        @{ 
-                            if(item.Gender == "m")
-                            {
-                                <img class="main_selector" src="~/Images/boy.png" />
-                            }
-                            else
-                            {
-                                <img class="main_selector" style="max-width: 10em;" src="~/Images/girl.png" />
-                            }
-                        }
-                        <div style="text-align: center;">@Html.DisplayFor(model => item.Name)</div>
-                    </div>
-                    @*<td>
-                        @Html.DisplayFor(model => item.Name)
-                    </td>*@
-            }
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4" style="display:inline-block;" id="person">
+                @{
+                    if (item.Gender == "m")
+                    {
+                        <img class="main_selector" src="~/Images/boy.png" />
+                    }
+                    else
+                    {
+                        <img class="main_selector" style="max-width: 10em;" src="~/Images/girl.png" />
+                    }
+                }
+                <div style="text-align: center;">@Html.DisplayFor(model => item.Name)</div>
+            </div>
+            @*<td>
+                    @Html.DisplayFor(model => item.Name)
+                </td>*@
+        }
     </div>
 </div>
 
@@ -30,4 +30,7 @@
 
 </div>
 
-<link rel="stylesheet" type="text/css" href="~/Content/Index.css" />
+@*<link rel="stylesheet" type="text/css" href="~/Content/Index.css" />*@
+@Styles.Render("~/Content/Index.css");
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/LoginScript.js");

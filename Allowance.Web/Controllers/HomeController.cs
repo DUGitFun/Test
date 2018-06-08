@@ -13,10 +13,8 @@ namespace Allowance.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Home()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
