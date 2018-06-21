@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Database.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Chores">
           <Key>
             <PropertyRef Name="id" />
@@ -12,6 +12,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar(max)" />
           <Property Name="Value" Type="int" />
+          <Property Name="Child" Type="int" />
         </EntityType>
         <EntityType Name="Kids">
           <Key>
@@ -20,13 +21,38 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="varchar(max)" />
           <Property Name="Chores" Type="int" />
+          <Property Name="Gender" Type="varchar(max)" />
         </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Child">
+          <End Role="Kids" Type="Self.Kids" Multiplicity="0..1" />
+          <End Role="Chores" Type="Self.Chores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kids">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Chores">
+              <PropertyRef Name="Child" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DatabaseStoreContainer">
           <EntitySet Name="Chores" EntityType="Self.Chores" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kids" EntityType="Self.Kids" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Child" Association="Self.FK_Child">
+            <End Role="Kids" EntitySet="Kids" />
+            <End Role="Chores" EntitySet="Chores" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Database" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -37,6 +63,8 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Value" Type="Int32" />
+          <Property Name="Child" Type="Int32" />
+          <NavigationProperty Name="Kid" Relationship="Database.FK_Child" FromRole="Chore" ToRole="Kid" />
         </EntityType>
         <EntityType Name="Kid">
           <Key>
@@ -45,11 +73,38 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Chores" Type="Int32" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Chores1" Relationship="Database.FK_Child" FromRole="Kid" ToRole="Chore" />
         </EntityType>
         <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chores" EntityType="Self.Chore" />
           <EntitySet Name="Kids" EntityType="Self.Kid" />
+          <AssociationSet Name="FK_Child" Association="Database.FK_Child">
+            <End Role="Kid" EntitySet="Kids" />
+            <End Role="Chore" EntitySet="Chores" />
+          </AssociationSet>
+          <EntitySet Name="Login" EntityType="Database.Login" />
         </EntityContainer>
+        <Association Name="FK_Child">
+          <End Type="Database.Kid" Role="Kid" Multiplicity="0..1" />
+          <End Type="Database.Chore" Role="Chore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kid">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Chore">
+              <PropertyRef Name="Child" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -59,6 +114,7 @@
           <EntitySetMapping Name="Chores">
             <EntityTypeMapping TypeName="Database.Chore">
               <MappingFragment StoreEntitySet="Chores">
+                <ScalarProperty Name="Child" ColumnName="Child" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Value" ColumnName="Value" />
@@ -68,9 +124,19 @@
           <EntitySetMapping Name="Kids">
             <EntityTypeMapping TypeName="Database.Kid">
               <MappingFragment StoreEntitySet="Kids">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Chores" ColumnName="Chores" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="Database.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -88,8 +154,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="False" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

@@ -12,13 +12,10 @@ namespace Allowance.Data
     using System;
     using System.Collections.Generic;
     
-    public partial class Chore
+    public partial class Login
     {
         public int id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Value { get; set; }
-        public Nullable<int> Child { get; set; }
-    
-        public virtual Kid Kid { get; set; }
+        public string Password { get; set; }
     }
 }

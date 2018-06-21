@@ -33,12 +33,12 @@ namespace Allowance.Data.DataManager
             return kidsReturn;
         }
 
-        public object UserLogin (string name, string password)
+        //todo write hasing for password saving, storage, retrieval
+        public bool UserLogin (string name, string password)
         {
-            //byte[] pass = Encoding.ASCII.GetBytes(password);
-            //var userInfo = db.Password.Where(x => x.PasswordHash.Contains(pass));
-            var userInfo = 6;
-            return userInfo;
+            var userInfo = db.Login.Where(x => x.Name == name && x.Password == password);
+            if (userInfo != null) { return true; }
+                    return false;
         }
 
         public bool SaveInfo(string name, string password)

@@ -25,7 +25,14 @@ namespace Allowance.Web.Controllers
         public ActionResult Login (string name, string password)
         {
             var userInfo = _LoginManager.UserLogin(name, password);
-            return View("Home");
+            if (userInfo)
+            {
+                return RedirectToAction("Overview", "Allowance");
+            }
+            else
+            {
+                return View("Login");
+            }
         }
 
         public ActionResult LoginPartial()

@@ -22,10 +22,11 @@ namespace Allowance.Business
             return kidsB;
         }
 
-        public object UserLogin (string name, string password)
+        public bool UserLogin (string name, string password)
         {
             var userInfo = _dataAccess.UserLogin(name, password);
-            return userInfo;
+            if (userInfo) { return true; }
+            return false;
         }
     }
 }

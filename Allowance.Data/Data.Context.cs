@@ -27,5 +27,6 @@ namespace Allowance.Data
     
         public virtual DbSet<Chore> Chores { get; set; }
         public virtual DbSet<Kid> Kids { get; set; }
+        public virtual DbSet<Login> Login { get; set; }
     }
 }
