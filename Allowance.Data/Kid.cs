@@ -24,6 +24,7 @@ namespace Allowance.Data
         public string Name { get; set; }
         public Nullable<int> Chores { get; set; }
         public string Gender { get; set; }
+        public Nullable<int> AllowanceTotal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Chore> Chores1 { get; set; }

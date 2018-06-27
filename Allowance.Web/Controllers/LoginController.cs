@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using Allowance.Business;
 
 namespace Allowance.Web.Controllers
@@ -25,9 +26,9 @@ namespace Allowance.Web.Controllers
         public ActionResult Login (string name, string password)
         {
             var userInfo = _LoginManager.UserLogin(name, password);
-            if (userInfo)
+            if (userInfo != null)
             {
-                return RedirectToAction("Overview", "Allowance");
+                return View("_Overview", userInfo);
             }
             else
             {
@@ -38,6 +39,11 @@ namespace Allowance.Web.Controllers
         public ActionResult LoginPartial()
         {
             return PartialView("_LoginPassword");
+        }
+
+        public ActionResult _Overview (object userInfo)
+        {
+            return View(userInfo);
         }
     }
 }

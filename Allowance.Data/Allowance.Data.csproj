@@ -69,6 +69,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Data.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DataManager\Constants.cs" />
     <Compile Include="DataManager\DataManager.cs" />
     <Compile Include="Kid.cs">
       <DependentUpon>Data.tt</DependentUpon>

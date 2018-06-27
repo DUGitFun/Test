@@ -15,7 +15,17 @@ namespace Allowance.Web.Tests.Login
         {
             LoginController Login = new LoginController();
             var result = Login.LoginHome();
-            //todo help
+
+        }
+
+        [TestMethod]
+        public void Login()
+        {
+            LoginController Login = new LoginController();
+            var userName = "Mason";
+            var password = "1234";
+            var loginResult = Login.Login(userName, password);
+
         }
     }
 }

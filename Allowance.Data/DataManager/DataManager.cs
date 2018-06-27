@@ -16,6 +16,7 @@ namespace Allowance.Data.DataManager
             var kidsD = db.Kids.ToList();
             var kidsReturn = kidsD.Select(x => new Models.ViewModels.LoginViewModel
             {
+                Id = x.id,
                 Name = x.Name,
                 Gender = x.Gender
             });
@@ -34,11 +35,17 @@ namespace Allowance.Data.DataManager
         }
 
         //todo write hasing for password saving, storage, retrieval
-        public bool UserLogin (string name, string password)
+        public object UserLogin (string name, string password)
         {
-            var userInfo = db.Login.Where(x => x.Name == name && x.Password == password);
-            if (userInfo != null) { return true; }
-                    return false;
+            var userInfo = db.Login.Where(x => x.Name == name && x.Password == password).ToList();
+            if (userInfo != null)
+            {
+                var id = userInfo[0].id;
+                var allowanceData = AllowanceOverview(id);
+                return allowanceData;
+                
+            }
+            return null;
         }
 
         public bool SaveInfo(string name, string password)
@@ -50,6 +57,21 @@ namespace Allowance.Data.DataManager
             //    return true;
             //}
             return false;
+        }
+
+        public object AllowanceOverview(int id)
+        {
+            var data = db.Database.SqlQuery<Models.ViewModels.AllowanceInfo>(Constants.AllowInfo + " ' " + id + " ' ");
+            //var data = db.Kids.SqlQuery(Constants.AllowanceInfoJoin + " ' " + id + " ' ").ToList();
+            //var allowanceInfo = new Models.ViewModels.AllowanceInfo
+            //{
+            //    id = data[0].id,
+            //    Name = data[0].Name,
+            //    Expr1 = data[0].Expr1,
+            //    Value = data[0].Value,
+
+            //}; //TODO : fix
+            return data;
         }
     }
 }

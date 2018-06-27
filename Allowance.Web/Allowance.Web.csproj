@@ -271,10 +271,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Allowance\Overview.cshtml" />
+    <Content Include="Views\Allowance\_Overview.cshtml" />
     <Content Include="Views\Allowance\Details.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\_LoginPassword.cshtml" />
+    <Content Include="Views\Login\_Overview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

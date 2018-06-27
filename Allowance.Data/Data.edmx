@@ -22,6 +22,7 @@
           <Property Name="Name" Type="varchar(max)" />
           <Property Name="Chores" Type="int" />
           <Property Name="Gender" Type="varchar(max)" />
+          <Property Name="AllowanceTotal" Type="int" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -75,6 +76,7 @@
           <Property Name="Chores" Type="Int32" />
           <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Chores1" Relationship="Database.FK_Child" FromRole="Kid" ToRole="Chore" />
+          <Property Name="AllowanceTotal" Type="Int32" />
         </EntityType>
         <EntityContainer Name="DbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Chores" EntityType="Self.Chore" />
@@ -124,6 +126,7 @@
           <EntitySetMapping Name="Kids">
             <EntityTypeMapping TypeName="Database.Kid">
               <MappingFragment StoreEntitySet="Kids">
+                <ScalarProperty Name="AllowanceTotal" ColumnName="AllowanceTotal" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
